@@ -58,7 +58,7 @@ namespace Suyeong.Algorithm.DocDetector
                 }
             }
 
-            return lineTexts;
+            return new TextBlockSetCollection(lineTexts.OrderBy(lineText => lineText.BottomY));
         }
 
         public static TextBlockSetCollection MergeTextLineByVertical(TextBlockCollection sources, bool isBottomFirst = true, double sizeRatio = SIZE_RATIO, double alignRatio = ALIGN_RATIO)
@@ -105,7 +105,7 @@ namespace Suyeong.Algorithm.DocDetector
                 }
             }
 
-            return lineTexts;
+            return isBottomFirst ? new TextBlockSetCollection(lineTexts.OrderBy(lineText => lineText.BottomY)) : new TextBlockSetCollection(lineTexts.OrderBy(lineText => lineText.TopY));
         }
 
         public static TextBlockSetCollection MergeTextGroupByHorizontal(TextBlockCollection sources, double sizeRatio = SIZE_RATIO, double alignRatio = ALIGN_RATIO, double spacingRatio = SPACING_RATIO)
@@ -131,7 +131,7 @@ namespace Suyeong.Algorithm.DocDetector
                 }
             }
 
-            return groupTexts;
+            return new TextBlockSetCollection(groupTexts.OrderBy(group => group.BottomY).ThenBy(group => group.LeftX));
         }
 
         public static TextBlockSetCollection MergeTextGroupByVertical(TextBlockCollection sources, bool isBottomFirst = true, double sizeRatio = SIZE_RATIO, double alignRatio = ALIGN_RATIO, double spacingRatio = SPACING_RATIO)
@@ -158,7 +158,7 @@ namespace Suyeong.Algorithm.DocDetector
                 }
             }
 
-            return groupTexts;
+            return isBottomFirst ? new TextBlockSetCollection(groupTexts.OrderBy(group => group.BottomY).ThenBy(group => group.LeftX)) : new TextBlockSetCollection(groupTexts.OrderBy(group => group.TopY).ThenBy(group => group.RightX));
         }
 
         static void FindHorizontalTextsRecursive(TextBlock current, double sizeRatio, double alignRatio, double spacingRatio, ref TextBlockCollection texts, ref TextBlockCollection sources, ref Dictionary<int, int> duplicateDic)
