@@ -4,40 +4,14 @@ namespace Suyeong.Algorithm.DocDetector
 {
     public struct ImageTable
     {
-        public ImageTable(int index, ImageCells cells)
+        public ImageTable(int index, int x, int y, int width, int height, ImageCellCollection cells)
         {
             this.Index = index;
+            this.X = x;
+            this.Y = y;
+            this.Width = width;
+            this.Height = height;
             this.cells = cells;
-
-            int minX = int.MaxValue, minY = int.MaxValue, maxX = int.MinValue, maxY = int.MinValue;
-
-            foreach (ImageCell cell in cells)
-            {
-                if (cell.LeftX < minX)
-                {
-                    minX = cell.LeftX;
-                }
-
-                if (cell.RightX > maxX)
-                {
-                    maxX = cell.RightX;
-                }
-
-                if (cell.TopY < minY)
-                {
-                    minY = cell.TopY;
-                }
-
-                if (cell.BottomY > maxY)
-                {
-                    maxY = cell.BottomY;
-                }
-            }
-
-            X = minX;
-            Y = minY;
-            Width = maxX - minX;
-            Height = maxY - minY;
         }
 
         public int Index { get; private set; }
@@ -45,17 +19,17 @@ namespace Suyeong.Algorithm.DocDetector
         public int Y { get; private set; }
         public int Width { get; private set; }
         public int Height { get; private set; }
-        public ImageCells cells { get; private set; }
+        public ImageCellCollection cells { get; private set; }
     }
 
-    public class ImageTables : List<ImageTable>
+    public class ImageTableCollection : List<ImageTable>
     {
-        public ImageTables()
+        public ImageTableCollection()
         {
 
         }
 
-        public ImageTables(IEnumerable<ImageTable> tables) : base()
+        public ImageTableCollection(IEnumerable<ImageTable> tables) : base()
         {
             this.AddRange(tables);
         }

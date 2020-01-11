@@ -38,13 +38,13 @@ namespace Suyeong.Algorithm.DocDetector
         public int Height { get; private set; }
     }
 
-    public class ImageCells : List<ImageCell>
+    public class ImageCellCollection : List<ImageCell>
     {
-        public ImageCells()
+        public ImageCellCollection()
         {
         }
 
-        public ImageCells(IEnumerable<ImageCell> cells) : base()
+        public ImageCellCollection(IEnumerable<ImageCell> cells) : base()
         {
             this.AddRange(cells);
         }

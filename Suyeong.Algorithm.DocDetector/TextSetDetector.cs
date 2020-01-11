@@ -17,6 +17,11 @@ namespace Suyeong.Algorithm.DocDetector
 
         public static TextBlockSetCollection MergeTextLineByHorizontal(TextBlockCollection sources, double sizeRatio = SIZE_RATIO, double alignRatio = ALIGN_RATIO)
         {
+            if (sources == null)
+            {
+                throw new NullReferenceException();
+            }
+
             TextBlockSetCollection lineTexts = new TextBlockSetCollection();
 
             TextBlockCollection textsLine;
@@ -63,6 +68,11 @@ namespace Suyeong.Algorithm.DocDetector
 
         public static TextBlockSetCollection MergeTextLineByVertical(TextBlockCollection sources, bool isBottomFirst = true, double sizeRatio = SIZE_RATIO, double alignRatio = ALIGN_RATIO)
         {
+            if (sources == null)
+            {
+                throw new NullReferenceException();
+            }
+
             TextBlockSetCollection lineTexts = new TextBlockSetCollection();
 
             TextBlockCollection textsLine, textsLineOrder;
@@ -110,6 +120,11 @@ namespace Suyeong.Algorithm.DocDetector
 
         public static TextBlockSetCollection MergeTextGroupByHorizontal(TextBlockCollection sources, double sizeRatio = SIZE_RATIO, double alignRatio = ALIGN_RATIO, double spacingRatio = SPACING_RATIO)
         {
+            if (sources == null)
+            {
+                throw new NullReferenceException();
+            }
+
             TextBlockSetCollection groupTexts = new TextBlockSetCollection();
 
             TextBlockCollection texts;
@@ -136,6 +151,11 @@ namespace Suyeong.Algorithm.DocDetector
 
         public static TextBlockSetCollection MergeTextGroupByVertical(TextBlockCollection sources, bool isBottomFirst = true, double sizeRatio = SIZE_RATIO, double alignRatio = ALIGN_RATIO, double spacingRatio = SPACING_RATIO)
         {
+            if (sources == null)
+            {
+                throw new NullReferenceException();
+            }
+
             TextBlockSetCollection groupTexts = new TextBlockSetCollection();
 
             TextBlockCollection texts, textsOrder;

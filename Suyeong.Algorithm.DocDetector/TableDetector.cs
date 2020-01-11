@@ -19,16 +19,16 @@ namespace Suyeong.Algorithm.DocDetector
         const double LIMIT_CELL_HEIGHT = 0.5d;
         const double RATIO_TEXT_HEIGHT = 0.5d;
 
-        public static ImageTables GetTables(string imagePath, int textSize, bool drawTable = false, bool drawLine = false)
+        public static ImageTableCollection GetTables(string imagePath, int textSize, bool drawTable = false, bool drawLine = false)
         {
             CellLines horizontals, verticals;
             int pageWidth, pageHeight;
-            DetectLines(imagePath: imagePath, textSize: textSize, drawLine: drawLine, horizontals: out horizontals, verticals: out verticals, pageWidth: out pageWidth, pageHeight: out pageHeight);
+            DetectLines(imagePath: imagePath, textSize: textSize, horizontals: out horizontals, verticals: out verticals, pageWidth: out pageWidth, pageHeight: out pageHeight);
 
             int lineDistance = GetLineDistanceByModeThickness(horizontals: ref horizontals, verticals: ref verticals);
             CellBoxes cellBoxes = DetectCellBoxes(lineDistance: lineDistance, horizontals: ref horizontals, verticals: ref verticals);
 
-            ImageTables tables = DetectTables(cellBoxes: cellBoxes, pageWidth: pageWidth, pageHeight: pageHeight, lineDistance: lineDistance, textSize: textSize);
+            ImageTableCollection tables = DetectTables(cellBoxes: cellBoxes, pageWidth: pageWidth, pageHeight: pageHeight, lineDistance: lineDistance, textSize: textSize);
 
             if (drawLine)
             {
@@ -43,7 +43,7 @@ namespace Suyeong.Algorithm.DocDetector
             return tables;
         }
 
-        static void DetectLines(string imagePath, int textSize, bool drawLine, out CellLines horizontals, out CellLines verticals, out int pageWidth, out int pageHeight)
+        static void DetectLines(string imagePath, int textSize, out CellLines horizontals, out CellLines verticals, out int pageWidth, out int pageHeight)
         {
             horizontals = new CellLines();
             verticals = new CellLines();
@@ -63,14 +63,14 @@ namespace Suyeong.Algorithm.DocDetector
                 int hThreshold = Convert.ToInt32(origin.Width * RATIO_LINE_LENGTH);
                 int vThreshold = Convert.ToInt32(origin.Height * RATIO_LINE_LENGTH);
 
-                horizontals = DetectHorizontalLines(binary: binary, hThreshold: hThreshold, textSize: textSize, startIndex: 0);
+                horizontals = DetectHorizontalLines(binary: binary, hThreshold: hThreshold, textSize: textSize);
                 verticals = DetectVerticalLines(binary: binary, vThreshold: vThreshold, textSize: textSize, startIndex: horizontals.Count);
                 pageWidth = origin.Width;
                 pageHeight = origin.Height;
             }
         }
 
-        static CellLines DetectHorizontalLines(Mat binary, int hThreshold, int textSize, int startIndex)
+        static CellLines DetectHorizontalLines(Mat binary, int hThreshold, int textSize)
         {
             CellLines horizontals = new CellLines();
 
@@ -508,14 +508,14 @@ namespace Suyeong.Algorithm.DocDetector
             }
         }
 
-        static ImageTables DetectTables(CellBoxes cellBoxes, int pageWidth, int pageHeight, int lineDistance, int textSize)
+        static ImageTableCollection DetectTables(CellBoxes cellBoxes, int pageWidth, int pageHeight, int lineDistance, int textSize)
         {
-            ImageTables tables = new ImageTables();
+            ImageTableCollection tables = new ImageTableCollection();
 
             CrossPoints crossPoints;
-            ImageCells cells;
+            ImageCellCollection cells;
             int[,] crossPointIndexes;
-            int index = 0;
+            int index = 0, minX, minY, maxX, maxY;
 
             int spacingMin = (int)(textSize * RATIO_TEXT_HEIGHT);
             double widthRatio = 1d / pageWidth;
@@ -534,7 +534,33 @@ namespace Suyeong.Algorithm.DocDetector
 
                     if (cells.Count > 0)
                     {
-                        tables.Add(new ImageTable(index: index++, cells: cells));
+                        minX = minY = int.MaxValue;
+                        maxX = maxY = int.MinValue;
+
+                        foreach (ImageCell cell in cells)
+                        {
+                            if (cell.LeftX < minX)
+                            {
+                                minX = cell.LeftX;
+                            }
+
+                            if (cell.RightX > maxX)
+                            {
+                                maxX = cell.RightX;
+                            }
+
+                            if (cell.TopY < minY)
+                            {
+                                minY = cell.TopY;
+                            }
+
+                            if (cell.BottomY > maxY)
+                            {
+                                maxY = cell.BottomY;
+                            }
+                        }
+
+                        tables.Add(new ImageTable(index: index++, x: minX, y: minY, width: maxX - minX, height: maxY - minY, cells: cells));
                     }
                 }
             }
@@ -581,9 +607,9 @@ namespace Suyeong.Algorithm.DocDetector
             return rawCrossPoints;
         }
 
-        static ImageCells DetectRawCells(CrossPoints crossPoints, int[,] crossPointIndexes, int spacingMin, double widthRatio, double heightRatio)
+        static ImageCellCollection DetectRawCells(CrossPoints crossPoints, int[,] crossPointIndexes, int spacingMin, double widthRatio, double heightRatio)
         {
-            ImageCells rawCells = new ImageCells();
+            ImageCellCollection rawCells = new ImageCellCollection();
 
             if (crossPoints.Count > 0)
             {
@@ -593,41 +619,38 @@ namespace Suyeong.Algorithm.DocDetector
 
                 foreach (CrossPoint current in crossPoints)
                 {
-                    if (current.RowIndex > 0 && current.ColumnIndex > 0)
+                    if (current.RowIndex > 0 && current.ColumnIndex > 0 && current.ExistLeftLine && current.ExistTopLine)
                     {
-                        if (current.ExistLeftLine && current.ExistTopLine)
+                        leftColumnIndex = FindLeftColumnIndex(rowIndex: current.RowIndex, columnIndex: current.ColumnIndex, crossPointIndexes: ref crossPointIndexes, rawCrossPoints: ref crossPoints);
+                        topRowIndex = FindTopRowIndex(rowIndex: current.RowIndex, columnIndex: current.ColumnIndex, crossPointIndexes: ref crossPointIndexes, rawCrossPoints: ref crossPoints);
+
+                        if (leftColumnIndex > -1 && topRowIndex > -1)
                         {
-                            leftColumnIndex = FindLeftColumnIndex(rowIndex: current.RowIndex, columnIndex: current.ColumnIndex, crossPointIndexes: ref crossPointIndexes, rawCrossPoints: ref crossPoints);
-                            topRowIndex = FindTopRowIndex(rowIndex: current.RowIndex, columnIndex: current.ColumnIndex, crossPointIndexes: ref crossPointIndexes, rawCrossPoints: ref crossPoints);
+                            leftTopIndex = crossPointIndexes[topRowIndex, leftColumnIndex];
 
-                            if (leftColumnIndex > -1 && topRowIndex > -1)
+                            if (leftTopIndex > -1)
                             {
-                                leftTopIndex = crossPointIndexes[topRowIndex, leftColumnIndex];
+                                leftTop = crossPoints[leftTopIndex];
 
-                                if (leftTopIndex > -1)
+                                leftX = leftTop.X;
+                                rightX = current.X;
+                                topY = leftTop.Y;
+                                bottomY = current.Y;
+                                width = rightX - leftX;
+                                height = bottomY - topY;
+
+                                // 가로 간격이나 세로 간격이 최소 간격 작은 것은 cell로 인정하지 않는다.
+                                // 셀의 가로, 세로가 모두 페이지의 절반을 넘어서면 cell로 인정하지 않는다.
+                                if (width > spacingMin && height > spacingMin &&
+                                    !(width * widthRatio > LIMIT_CELL_WIDTH && height * heightRatio > LIMIT_CELL_HEIGHT))
                                 {
-                                    leftTop = crossPoints[leftTopIndex];
+                                    rowIndex = leftTop.RowIndex;
+                                    columnIndex = leftTop.ColumnIndex;
+                                    columnSize = current.ColumnIndex - leftTop.ColumnIndex;
+                                    rowSize = current.RowIndex - leftTop.RowIndex;
 
-                                    leftX = leftTop.X;
-                                    rightX = current.X;
-                                    topY = leftTop.Y;
-                                    bottomY = current.Y;
-                                    width = rightX - leftX;
-                                    height = bottomY - topY;
-
-                                    // 가로 간격이나 세로 간격이 최소 간격 작은 것은 cell로 인정하지 않는다.
-                                    // 셀의 가로, 세로가 모두 페이지의 절반을 넘어서면 cell로 인정하지 않는다.
-                                    if (width > spacingMin && height > spacingMin &&
-                                        !(width * widthRatio > LIMIT_CELL_WIDTH && height * heightRatio > LIMIT_CELL_HEIGHT))
-                                    {
-                                        rowIndex = leftTop.RowIndex;
-                                        columnIndex = leftTop.ColumnIndex;
-                                        columnSize = current.ColumnIndex - leftTop.ColumnIndex;
-                                        rowSize = current.RowIndex - leftTop.RowIndex;
-
-                                        // 최종적으로 좌표는 백분율로 된 상대값이기 때문에 여기서 바꿔줘야 한다.
-                                        rawCells.Add(new ImageCell(index: index++, rowIndex: rowIndex, columnIndex: columnIndex, rowSize: rowSize, columnSize: columnSize, topY: topY, bottomY: bottomY, leftX: leftX, rightX: rightX));
-                                    }
+                                    // 최종적으로 좌표는 백분율로 된 상대값이기 때문에 여기서 바꿔줘야 한다.
+                                    rawCells.Add(new ImageCell(index: index++, rowIndex: rowIndex, columnIndex: columnIndex, rowSize: rowSize, columnSize: columnSize, topY: topY, bottomY: bottomY, leftX: leftX, rightX: rightX));
                                 }
                             }
                         }
@@ -636,7 +659,7 @@ namespace Suyeong.Algorithm.DocDetector
             }
 
             // 병합된 경우 index가 뒤죽박죽이 되므로 여기서 정렬한다.
-            return new ImageCells(rawCells.OrderBy(cell => cell.RowIndex).ThenBy(cell => cell.ColumnIndex));
+            return new ImageCellCollection(rawCells.OrderBy(cell => cell.RowIndex).ThenBy(cell => cell.ColumnIndex));
         }
 
         static int FindLeftColumnIndex(int rowIndex, int columnIndex, ref int[,] crossPointIndexes, ref CrossPoints rawCrossPoints)
@@ -685,7 +708,7 @@ namespace Suyeong.Algorithm.DocDetector
             return -1;
         }
 
-        static void DrawTables(ImageTables tables, string imagePath)
+        static void DrawTables(ImageTableCollection tables, string imagePath)
         {
             using (Mat img = Cv2.ImRead(fileName: imagePath, flags: ImreadModes.Color))
             {
