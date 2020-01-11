@@ -66,17 +66,17 @@
     <Compile Include="TableDetector.cs" />
     <Compile Include="TextDiffer.cs" />
     <Compile Include="TextSetDetector.cs" />
-    <Compile Include="Type\CellBox.cs" />
-    <Compile Include="Type\CellLine.cs" />
-    <Compile Include="Type\CrossPoint.cs" />
-    <Compile Include="Type\DiffResult.cs" />
-    <Compile Include="Type\DiffResultView.cs" />
-    <Compile Include="Type\DiffSentence.cs" />
-    <Compile Include="Type\DiffType.cs" />
-    <Compile Include="Type\ImageCell.cs" />
-    <Compile Include="Type\ImageTable.cs" />
-    <Compile Include="Type\TextBlock.cs" />
-    <Compile Include="Type\TextBlockSet.cs" />
+    <Compile Include="Type\Table\CellBox.cs" />
+    <Compile Include="Type\Table\CellLine.cs" />
+    <Compile Include="Type\Table\CrossPoint.cs" />
+    <Compile Include="Type\Diff\DiffResult.cs" />
+    <Compile Include="Type\Diff\DiffResultView.cs" />
+    <Compile Include="Type\Diff\DiffSentence.cs" />
+    <Compile Include="Type\Diff\DiffType.cs" />
+    <Compile Include="Type\Table\ImageCell.cs" />
+    <Compile Include="Type\Table\ImageTable.cs" />
+    <Compile Include="Type\TextBlock\TextBlock.cs" />
+    <Compile Include="Type\TextBlock\TextBlockSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
