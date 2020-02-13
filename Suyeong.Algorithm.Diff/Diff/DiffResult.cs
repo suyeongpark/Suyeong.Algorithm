@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Suyeong.Algorithm.DocDetector
+namespace Suyeong.Algorithm.Diff
 {
     public struct DiffResult
     {

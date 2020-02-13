@@ -61,18 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EditDistance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableDetector.cs" />
-    <Compile Include="TextDiffer.cs" />
     <Compile Include="TextSetDetector.cs" />
     <Compile Include="Type\Table\CellBox.cs" />
     <Compile Include="Type\Table\CellLine.cs" />
     <Compile Include="Type\Table\CrossPoint.cs" />
-    <Compile Include="Type\Diff\DiffResult.cs" />
-    <Compile Include="Type\Diff\DiffResultView.cs" />
-    <Compile Include="Type\Diff\DiffSentence.cs" />
-    <Compile Include="Type\Diff\DiffType.cs" />
     <Compile Include="Type\Table\ImageCell.cs" />
     <Compile Include="Type\Table\ImageTable.cs" />
     <Compile Include="Type\TextBlock\TextBlock.cs" />

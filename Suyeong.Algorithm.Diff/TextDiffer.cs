@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Suyeong.Algorithm.DocDetector
+namespace Suyeong.Algorithm.Diff
 {
     public static class TextDiffer
     {

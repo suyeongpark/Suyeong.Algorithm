@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Suyeong.Algorithm.DocDetector", "Suyeong.Algorithm.DocDetector\Suyeong.Algorithm.DocDetector.csproj", "{A0266CE0-596D-4874-8D3F-1CA521A23B1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Suyeong.Algorithm.Diff", "Suyeong.Algorithm.Diff\Suyeong.Algorithm.Diff.csproj", "{37BE149F-60BB-4DD1-83BB-B74349D56FCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A0266CE0-596D-4874-8D3F-1CA521A23B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0266CE0-596D-4874-8D3F-1CA521A23B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0266CE0-596D-4874-8D3F-1CA521A23B1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37BE149F-60BB-4DD1-83BB-B74349D56FCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37BE149F-60BB-4DD1-83BB-B74349D56FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37BE149F-60BB-4DD1-83BB-B74349D56FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37BE149F-60BB-4DD1-83BB-B74349D56FCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
