@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Suyeong.Algorithm.Diff.Text/1.0.0": {
+        "runtime": {
+          "Suyeong.Algorithm.Diff.Text.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Suyeong.Algorithm.Diff.Text/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

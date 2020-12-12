@@ -1,0 +1,9 @@
+E:\Dev\Suyeong\Suyeong.Algorithm\Suyeong.Algorithm.Detect.Table\bin\Debug\netcoreapp3.1\Suyeong.Algorithm.Detect.Table.deps.json
+E:\Dev\Suyeong\Suyeong.Algorithm\Suyeong.Algorithm.Detect.Table\bin\Debug\netcoreapp3.1\Suyeong.Algorithm.Detect.Table.dll
+E:\Dev\Suyeong\Suyeong.Algorithm\Suyeong.Algorithm.Detect.Table\bin\Debug\netcoreapp3.1\Suyeong.Algorithm.Detect.Table.pdb
+E:\Dev\Suyeong\Suyeong.Algorithm\Suyeong.Algorithm.Detect.Table\obj\Debug\netcoreapp3.1\Suyeong.Algorithm.Detect.Table.csprojAssemblyReference.cache
+E:\Dev\Suyeong\Suyeong.Algorithm\Suyeong.Algorithm.Detect.Table\obj\Debug\netcoreapp3.1\Suyeong.Algorithm.Detect.Table.AssemblyInfoInputs.cache
+E:\Dev\Suyeong\Suyeong.Algorithm\Suyeong.Algorithm.Detect.Table\obj\Debug\netcoreapp3.1\Suyeong.Algorithm.Detect.Table.AssemblyInfo.cs
+E:\Dev\Suyeong\Suyeong.Algorithm\Suyeong.Algorithm.Detect.Table\obj\Debug\netcoreapp3.1\Suyeong.Algorithm.Detect.Table.csproj.CoreCompileInputs.cache
+E:\Dev\Suyeong\Suyeong.Algorithm\Suyeong.Algorithm.Detect.Table\obj\Debug\netcoreapp3.1\Suyeong.Algorithm.Detect.Table.dll
+E:\Dev\Suyeong\Suyeong.Algorithm\Suyeong.Algorithm.Detect.Table\obj\Debug\netcoreapp3.1\Suyeong.Algorithm.Detect.Table.pdb
