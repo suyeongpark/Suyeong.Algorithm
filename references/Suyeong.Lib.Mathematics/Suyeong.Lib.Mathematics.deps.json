@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Suyeong.Lib.Mathematics/1.0.0": {
+        "runtime": {
+          "Suyeong.Lib.Mathematics.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Suyeong.Lib.Mathematics/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

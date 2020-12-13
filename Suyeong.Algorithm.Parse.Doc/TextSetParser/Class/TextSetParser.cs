@@ -6,6 +6,8 @@ namespace Suyeong.Algorithm.Parse.Doc
 {
     /// <summary>
     /// 옛날에 짜 놓은 건데 일단 해놓긴 했지만, 그렇게 잘 짜여진 로직은 아니다. 참고만 해서 차후에 sentence 만드는걸로 업데이트 할 것
+    /// 
+    /// text 합치기 로직을 여기다 넣자.
     /// </summary>
 
     public static class TextSetParser

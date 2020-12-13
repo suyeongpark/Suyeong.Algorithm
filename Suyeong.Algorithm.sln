@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Suyeong.Algorithm.Diff.Text", "Suyeong.Algorithm.Diff.Text\Suyeong.Algorithm.Diff.Text.csproj", "{DE05E020-A0B0-40D8-97CE-E37A63F83B06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Suyeong.Algorithm.Diff.Text", "Suyeong.Algorithm.Diff.Text\Suyeong.Algorithm.Diff.Text.csproj", "{DE05E020-A0B0-40D8-97CE-E37A63F83B06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Suyeong.Algorithm.Diff.Image", "Suyeong.Algorithm.Diff.Image\Suyeong.Algorithm.Diff.Image.csproj", "{7D334FF4-CF1F-4AF7-BBDE-5415989FF086}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Suyeong.Algorithm.Diff.Image", "Suyeong.Algorithm.Diff.Image\Suyeong.Algorithm.Diff.Image.csproj", "{7D334FF4-CF1F-4AF7-BBDE-5415989FF086}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Suyeong.Algorithm.Detect.Table", "Suyeong.Algorithm.Detect.Table\Suyeong.Algorithm.Detect.Table.csproj", "{6C1106C7-6770-4827-9148-5063D3900828}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Suyeong.Algorithm.Detect.Table", "Suyeong.Algorithm.Detect.Table\Suyeong.Algorithm.Detect.Table.csproj", "{6C1106C7-6770-4827-9148-5063D3900828}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Suyeong.Algorithm.Parse.Doc", "Suyeong.Algorithm.Parse.Doc\Suyeong.Algorithm.Parse.Doc.csproj", "{B700EF9E-C5BD-4DA8-819D-0D639497DF8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Suyeong.Algorithm.Parse.Doc", "Suyeong.Algorithm.Parse.Doc\Suyeong.Algorithm.Parse.Doc.csproj", "{B700EF9E-C5BD-4DA8-819D-0D639497DF8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Suyeong.Algorithm.Detect.Shape", "Suyeong.Algorithm.Detect.Shape\Suyeong.Algorithm.Detect.Shape.csproj", "{32266AE5-4137-4C20-95A1-C8BF93866F3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B700EF9E-C5BD-4DA8-819D-0D639497DF8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B700EF9E-C5BD-4DA8-819D-0D639497DF8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B700EF9E-C5BD-4DA8-819D-0D639497DF8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32266AE5-4137-4C20-95A1-C8BF93866F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32266AE5-4137-4C20-95A1-C8BF93866F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32266AE5-4137-4C20-95A1-C8BF93866F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32266AE5-4137-4C20-95A1-C8BF93866F3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

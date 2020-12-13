@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Variable\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Suyeong.Lib.Mathematics">
+      <HintPath>..\references\Suyeong.Lib.Mathematics\Suyeong.Lib.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Suyeong.Lib.Type">
+      <HintPath>..\references\Suyeong.Lib.Type\Suyeong.Lib.Type.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
